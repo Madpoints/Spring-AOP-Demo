@@ -7,6 +7,6 @@ public class AccountDAO {
 	
 	public void addAccount() {
 		
-		System.out.println(getClass() + "Adding an account to the db");
+		System.out.println(getClass() + ": Adding an account to the db");
 	}
 }
