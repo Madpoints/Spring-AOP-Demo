@@ -14,4 +14,11 @@ public class AccountDAO {
 							theAccount.getStatus() + ", vip:" +
 							vipFlag + ", to the db");
 	}
+	
+	public boolean isVip() {
+		
+		System.out.println(getClass() + " Checking VIP status");
+		
+		return true;
+	}
 }

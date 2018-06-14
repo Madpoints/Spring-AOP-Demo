@@ -20,9 +20,10 @@ public class MainDemoApp {
 		
 		// call business methods
 		Account theAccount = new Account("Ron", "Good");
-		theAccountDAO.addAccount(theAccount, true);
+		theAccountDAO.addAccount(theAccount, theAccountDAO.isVip());
 		
 		theMembershipDAO.addMember();
+		theMembershipDAO.daysToRenew();
 		
 		// close context
 		context.close();

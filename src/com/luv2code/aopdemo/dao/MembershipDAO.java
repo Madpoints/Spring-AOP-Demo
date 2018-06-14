@@ -11,4 +11,9 @@ public class MembershipDAO {
 		
 		return true;
 	}
+	
+	public void daysToRenew() {
+		
+		System.out.println(getClass() + ": Membership expires in 364 days");
+	}
 }
