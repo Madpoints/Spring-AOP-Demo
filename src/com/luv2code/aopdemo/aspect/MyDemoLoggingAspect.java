@@ -18,4 +18,9 @@ public class MyDemoLoggingAspect {
 		
 		System.out.println("\n**@Before advice on add*()**");
 	}
+	
+	@Before("forDaoPackage()")
+	public void analytics() {
+		System.out.println("Analyzing...");
+	}
 }
