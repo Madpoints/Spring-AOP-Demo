@@ -9,18 +9,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyDemoLoggingAspect {
 	
-	// pointcut declaration
+	// pointcut declarations
+	
+	// match on all methods within a package
 	@Pointcut("execution(* com.luv2code.aopdemo.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
-	@Before("forDaoPackage()")
+	// match on all getters within a package
+	@Pointcut("execution(* com.luv2code.aopdemo.dao.*.get*(..))")
+	private void forDaoPackageGet() {}
+	
+	// match on all setters within a package
+	@Pointcut("execution(* com.luv2code.aopdemo.dao.*.set*(..))")
+	private void forDaoPackageSet() {}
+	
+	// combine pointcut expressions
+	@Pointcut("forDaoPackage() && !(forDaoPackageGet() || forDaoPackageSet())")
+	private void forDaoPackageNoGetSet() {}
+	
+	@Before("forDaoPackageNoGetSet()")
 	public void beforeAddAccountAdvice() {
 		
-		System.out.println("\n**@Before advice on add*()**");
+		System.out.println("\n**@Before advice on all methods in package**");
 	}
 	
-	@Before("forDaoPackage()")
+	@Before("forDaoPackageNoGetSet()")
 	public void analytics() {
-		System.out.println("Analyzing...");
+		
+		System.out.println("\n**Analyzing...**");
 	}
 }

@@ -19,8 +19,14 @@ public class MainDemoApp {
 		MembershipDAO theMembershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 		
 		// call business methods
-		Account theAccount = new Account("Ron", "Good");
+		Account theAccount = new Account();
 		theAccountDAO.addAccount(theAccount, theAccountDAO.isVip());
+		
+		theAccountDAO.setName("Jim");
+		theAccountDAO.setStatus("Good Standing");
+		
+		String name = theAccountDAO.getName();
+		String status = theAccountDAO.getStatus();
 		
 		theMembershipDAO.addMember();
 		theMembershipDAO.daysToRenew();
