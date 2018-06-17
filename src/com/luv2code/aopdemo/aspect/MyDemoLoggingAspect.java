@@ -27,6 +27,8 @@ public class MyDemoLoggingAspect {
 	@Pointcut("forDaoPackage() && !(forDaoPackageGet() || forDaoPackageSet())")
 	private void forDaoPackageNoGetSet() {}
 	
+	
+	// advices
 	@Before("forDaoPackageNoGetSet()")
 	public void beforeAddAccountAdvice() {
 		
@@ -34,8 +36,14 @@ public class MyDemoLoggingAspect {
 	}
 	
 	@Before("forDaoPackageNoGetSet()")
-	public void analytics() {
+	public void performAnalytics() {
 		
 		System.out.println("\n**Analyzing...**");
+	}
+	
+	@Before("forDaoPackageNoGetSet()")
+	public void logToCloud() {
+		
+		System.out.println("\n**Logging to the cloud...**");
 	}
 }
