@@ -1,6 +1,9 @@
 package com.luv2code.aopdemo.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -15,6 +18,23 @@ import com.luv2code.aopdemo.Account;
 public class MyDemoLoggingAspect {
 	
 	// advice
+	
+	@AfterReturning(
+			pointcut="execution(* com.luv2code.aopdemo.dao.AccountDAO.findAccounts(..))",
+			returning="result")
+	public void afterReturningFindAccountsAdvice(
+					JoinPoint theJoinPoint, List<Account> result) {
+		
+		// display method
+		String method = theJoinPoint.getSignature().toShortString();
+		System.out.println("\n**@AfterReturning on method: " +
+							method + "**");
+		
+		// display method call result
+		System.out.println("\n**@AfterReturning result: " +
+							result + "**");
+	}
+	
 	@Before("com.luv2code.aopdemo.aspect.AopExpressions.forDaoPackageNoGetSet()")
 	public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
 		

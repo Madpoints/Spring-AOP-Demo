@@ -23,10 +23,10 @@ public class MainDemoApp {
 		theAccountDAO.addAccount(theAccount, theAccountDAO.isVip());
 		
 		theAccountDAO.setName("Jim");
-		theAccountDAO.setStatus("Good Standing");
+		theAccountDAO.setCode("Good Standing");
 		
 		String name = theAccountDAO.getName();
-		String status = theAccountDAO.getStatus();
+		String status = theAccountDAO.getCode();
 		
 		theMembershipDAO.addMember();
 		theMembershipDAO.daysToRenew();
