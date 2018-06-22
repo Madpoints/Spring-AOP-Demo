@@ -3,6 +3,7 @@ package com.luv2code.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,7 +19,16 @@ import com.luv2code.aopdemo.Account;
 @Order(2)
 public class MyDemoLoggingAspect {
 	
-	// advice
+	// advices
+	
+	@After("execution(* com.luv2code.aopdemo.dao.AccountDAO.findAccounts(..))")
+	public void afterFinallyFindAccountAdvice(JoinPoint theJoinPoint) {
+		
+		// display method
+		String method = theJoinPoint.getSignature().toShortString();
+		System.out.println("\n**@After (finally) on method: " +
+									method + "**");
+	}
 	
 	@AfterThrowing(
 			pointcut="execution(* com.luv2code.aopdemo.dao.AccountDAO.findAccounts(..))",
