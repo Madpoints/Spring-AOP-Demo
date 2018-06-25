@@ -40,7 +40,19 @@ public class MyDemoLoggingAspect {
 		long begin = System.currentTimeMillis();
 		
 		// execute method
-		Object result = theProceedingJoinPoint.proceed();
+		Object result = null;
+		
+		try {
+			
+			result = theProceedingJoinPoint.proceed();
+			
+		} catch (Exception e) {
+			// log exception
+			myLogger.warning(e.getMessage());
+			
+			// give user a custom message
+			result = "Major accident. But we found you another route.";
+		}
 		
 		// get time stamp
 		long end = System.currentTimeMillis();
