@@ -50,8 +50,8 @@ public class MyDemoLoggingAspect {
 			// log exception
 			myLogger.warning(e.getMessage());
 			
-			// give user a custom message
-			result = "Major accident. But we found you another route.";
+			// rethrow exception
+			throw e;
 		}
 		
 		// get time stamp
